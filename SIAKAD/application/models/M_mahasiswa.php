@@ -5,6 +5,20 @@ class M_mahasiswa extends CI_Model {
 		return $this->db->get('tb_mahasiswa');
 	}
 
+	public function get_keyword($keyword) {
+		$this->db->select('*');
+		$this->db->from('tb_mahasiswa');
+		$this->db->like('nama', $keyword);
+		$this->db->or_like('nim', $keyword);
+		$this->db->or_like('tgl_lahir', $keyword);
+		$this->db->or_like('jurusan', $keyword);
+		$this->db->or_like('alamat', $keyword);
+		$this->db->or_like('email', $keyword);
+		$this->db->or_like('no_telp', $keyword);
+
+		return $this->db->get()->result();
+	}
+
 	public function detail_data($id = NULL){
 		$query = $this->db->get_where('tb_mahasiswa', array('id' => $id))->row();
 		return $query;

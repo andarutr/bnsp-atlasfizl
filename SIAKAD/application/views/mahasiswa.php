@@ -10,6 +10,7 @@
       </ol>
     </section>
     <section class="content">
+    	<?= $this->session->flashdata('message') ?>
 	    <button class="btn btn-primary mt-4 ml-3" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"> Tambah Data Mahasiswa</i></button>
 	    <a href="<?= base_url('mahasiswa/print') ?>" class="btn btn-danger"><i class="fa fa-print"></i> Print</a>
 			<div class="dropdown inline">
@@ -22,7 +23,12 @@
 			    <li><a href="<?= base_url('mahasiswa/excel') ?>">EXCEL</a></li>
 			  </ul>
 			</div>
-
+			<div class="navbar-form navbar-right">
+				<?= form_open('mahasiswa/search') ?>
+				<input type="text" class="form-control" name="keyword" placeholder="Cari">
+				<button type="submit" class="btn btn-success">Cari</button>
+				<?= form_close() ?>
+			</div>
     	<table class="table table-striped">
     		<tr>
     			<th>NO</th>

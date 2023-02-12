@@ -10,6 +10,16 @@ class Mahasiswa extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function search() {
+		$keyword = $this->input->post('keyword');
+		$data['mahasiswa'] = $this->M_mahasiswa->get_keyword($keyword);
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/sidebar');
+		$this->load->view('mahasiswa', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function detail($id) {
 		$data['detail'] = $this->M_mahasiswa->detail_data($id);
 
@@ -21,6 +31,7 @@ class Mahasiswa extends CI_Controller {
 
 	public function tambah_aksi() {
 		$this->M_mahasiswa->input_data();
+		$this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">Berhasil menambahkan data!</div>');
 		redirect('mahasiswa/index');
 	}
 
@@ -35,11 +46,13 @@ class Mahasiswa extends CI_Controller {
 
 	public function update($id) {
 		$this->M_mahasiswa->update_data($id);
+		$this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">Berhasil memperbarui data!</div>');
 		redirect('mahasiswa/index');
 	}
 
 	public function hapus($id) {
 		$this->M_mahasiswa->hapus_data($id);
+		$this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">Berhasil menghapus data!</div>');
 		redirect('mahasiswa/index');
 	}
 
