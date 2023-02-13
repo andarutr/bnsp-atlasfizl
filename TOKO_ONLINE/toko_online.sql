@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2023 at 08:37 AM
+-- Generation Time: Feb 13, 2023 at 02:50 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -38,6 +38,16 @@ CREATE TABLE `tb_barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `tb_barang`
+--
+
+INSERT INTO `tb_barang` (`id_brg`, `nama_brg`, `keterangan`, `kategori`, `harga`, `stok`, `gambar`) VALUES
+(1, 'Sepatu Nike', 'Sepatu Merk Nike Joyride', 'Pakaian Pria', 800000, 10, 'nike-joyride.jpg'),
+(2, 'Jam Tangan Amazfit', 'Jam Tangan Merk Xiaomi Amazfit Bip', 'Pakaian Pria', 1300000, 8, 'xiaomi-amazfit.jpg'),
+(3, 'Laptop Asus', 'Laptop Merk Asus X441BA', 'Elektronik', 4500000, 3, 'asus-x441ba.jpeg'),
+(4, 'Baju Erigo', 'Baju Merk Erigo All Size', 'Pakaian Pria', 50000, 1000, 'erigo.webp');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -55,7 +65,7 @@ ALTER TABLE `tb_barang`
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id_brg` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_brg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
