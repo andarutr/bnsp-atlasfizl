@@ -19,7 +19,7 @@
 			<td><?= $brg->nama_brg ?></td>
 			<td><?= $brg->keterangan ?></td>
 			<td><?= $brg->kategori ?></td>
-			<td><?= $brg->harga ?></td>
+			<td>Rp <?= number_format($brg->harga,0,',','.') ?></td>
 			<td><?= $brg->stok ?></td>
 			<td>
 				<a class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i></a>
