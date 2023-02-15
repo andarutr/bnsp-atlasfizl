@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2023 at 02:04 AM
+-- Generation Time: Feb 15, 2023 at 04:14 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -42,10 +42,12 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`id_brg`, `nama_brg`, `keterangan`, `kategori`, `harga`, `stok`, `gambar`) VALUES
-(1, 'Sepatu Nike', 'Sepatu Merk Nike Joyride', 'Pakaian Pria', 800000, 8, 'nike-joyride.jpg'),
+(1, 'Sepatu Nike', 'Sepatu Merk Nike Joyride', 'Peralatan Olahraga', 800000, 8, 'nike-joyride.jpg'),
 (2, 'Jam Tangan Amazfit', 'Jam Tangan Merk Xiaomi Amazfit Bip', 'Pakaian Pria', 1300000, 8, 'xiaomi-amazfit.jpg'),
-(3, 'Laptop Asus', 'Laptop Merk Asus X441BA', 'Elektronik', 4500000, 3, 'asus-x441ba.jpeg'),
-(4, 'Baju Erigo', 'Baju Merk Erigo All Size', 'Pakaian Pria', 50000, 1000, 'erigo.webp');
+(3, 'Laptop Asus', 'Laptop Merk Asus X441BA', 'Elektronik', 4500000, 8, 'asus-x441ba.jpeg'),
+(4, 'Baju Erigo', 'Baju Merk Erigo All Size', 'Pakaian Pria', 50000, 8, 'erigo.webp'),
+(6, 'Baju Wanita', 'Pakaian Wanita Jumpsuit Terbaru', 'Pakaian Wanita', 150000, 8, 'pakaian-wanita.jpg'),
+(7, 'Baju Anak', 'Pakaian Anak Muslimah Terbaru', 'Pakaian Anak-anak', 125000, 8, 'pakaian-anak.jpg');
 
 -- --------------------------------------------------------
 
@@ -60,13 +62,6 @@ CREATE TABLE `tb_invoice` (
   `tgl_pesan` datetime NOT NULL,
   `batas_bayar` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_invoice`
---
-
-INSERT INTO `tb_invoice` (`id`, `nama`, `alamat`, `tgl_pesan`, `batas_bayar`) VALUES
-(1, 'Andaru', 'Jakarta', '2023-02-15 06:42:19', '2023-02-16 06:42:19');
 
 -- --------------------------------------------------------
 
@@ -85,12 +80,15 @@ CREATE TABLE `tb_pesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tb_pesanan`
+-- Triggers `tb_pesanan`
 --
-
-INSERT INTO `tb_pesanan` (`id`, `id_invoice`, `id_brg`, `nama_brg`, `jumlah`, `harga`, `pilihan`) VALUES
-(1, 1, 1, 'Sepatu Nike', 1, 800000, ''),
-(2, 2, 1, 'Sepatu Nike', 1, 800000, '');
+DELIMITER $$
+CREATE TRIGGER `pesanan_penjualan` AFTER INSERT ON `tb_pesanan` FOR EACH ROW BEGIN
+	UPDATE tb_barang SET stok = stok-NEW.jumlah
+    WHERE id_brg = NEW.id_brg;
+END
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
@@ -122,19 +120,19 @@ ALTER TABLE `tb_pesanan`
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id_brg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_brg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tb_pesanan`
 --
 ALTER TABLE `tb_pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

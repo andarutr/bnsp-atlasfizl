@@ -10,6 +10,15 @@ class Data_barang extends CI_Controller {
 		$this->load->view('templates_admin/footer');
 	}
 
+	public function detail($id_brg){
+		$data['barang'] = $this->model_barang->detail_brg($id_brg);
+
+		$this->load->view('templates_admin/header');
+		$this->load->view('templates_admin/sidebar');
+		$this->load->view('admin/detail_barang', $data);
+		$this->load->view('templates_admin/footer');
+	}
+
 	public function tambah_aksi() {
 		$nama_brg = $this->input->post('nama_brg');
 		$keterangan = $this->input->post('keterangan');

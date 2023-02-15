@@ -22,7 +22,7 @@
 			<td>Rp <?= number_format($brg->harga,0,',','.') ?></td>
 			<td><?= $brg->stok ?></td>
 			<td>
-				<a class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i></a>
+				<a href="<?= base_url('admin/data_barang/detail/').$brg->id_brg ?>" class="btn btn-sm btn-success"><i class="fas fa-search-plus"></i></a>
 			</td>
 			<td>
 				<a href="<?= base_url('admin/data_barang/edit/').$brg->id_brg ?>" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
@@ -56,8 +56,14 @@
         		<input type="text" class="form-control" name="keterangan">
         	</div>
         	<div class="form-group">
-        		<label>Kategori</label>
-        		<input type="text" class="form-control" name="kategori">
+        		<label>Kategori</label>	
+        		<select name="kategori" class="form-control">
+        			<option>Elektronik</option>
+        			<option>Pakaian Pria</option>
+        			<option>Pakaian Wanita</option>
+        			<option>Pakaian Anak-anak</option>
+        			<option>Peralatan Olahraga</option>
+        		</select>
         	</div>
         	<div class="form-group">
         		<label>Harga</label>
