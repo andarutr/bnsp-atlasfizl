@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2023 at 06:32 AM
+-- Generation Time: Feb 15, 2023 at 07:15 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -110,7 +110,8 @@ CREATE TABLE `tb_user` (
 
 INSERT INTO `tb_user` (`id`, `nama`, `username`, `password`, `role_id`) VALUES
 (1, 'admin', 'admin', '123', 1),
-(2, 'User', 'user', '123', 2);
+(2, 'User', 'user', '123', 2),
+(3, 'Triadi', 'triadi', '123', 2);
 
 --
 -- Indexes for dumped tables
@@ -166,7 +167,7 @@ ALTER TABLE `tb_pesanan`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

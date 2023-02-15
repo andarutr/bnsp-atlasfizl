@@ -1,13 +1,13 @@
 <?php 
 
 class Dashboard extends CI_Controller {
-	public function index() {
-		$data['barang'] = $this->model_barang->tampil_data()->result();
+	public function __construct(){
+		parent::__construct();
 
-		$this->load->view('templates/header');
-		$this->load->view('templates/sidebar');
-		$this->load->view('dashboard', $data);
-		$this->load->view('templates/footer');
+		if($this->session->userdata('role_id') != '2'){
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger">Anda Belum Login!</div>');
+			redirect('auth/login');
+		}
 	}
 
 	public function tambah_ke_keranjang($id){
@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller {
 		];
 
 		$this->cart->insert($data);
-		redirect('dashboard');
+		redirect('welcome');
 	}
 
 	public function detail_keranjang(){
@@ -33,7 +33,7 @@ class Dashboard extends CI_Controller {
 
 	public function hapus_keranjang(){
 		$this->cart->destroy();
-		redirect('dashboard/index');
+		redirect('welcome');
 	}
 
 	public function pembayaran(){
